@@ -10,6 +10,7 @@
 		ADD92F7C2F3ECDA500F4D128 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD92F7B2F3ECDA500F4D128 /* ContentView.swift */; };
 		ADD92FA32F3ECE2A00F4D128 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD92FA22F3ECE2A00F4D128 /* OnboardingView.swift */; };
 		ADD92FA52F3ECE3900F4D128 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD92FA42F3ECE3900F4D128 /* HomeView.swift */; };
+		ADD92FAA2F40714F00F4D128 /* CircleGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD92FA92F40714F00F4D128 /* CircleGroupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		ADD92F8D2F3ECDA600F4D128 /* Start-project-learnning-demoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Start-project-learnning-demoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADD92FA22F3ECE2A00F4D128 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		ADD92FA42F3ECE3900F4D128 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		ADD92FA92F40714F00F4D128 /* CircleGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGroupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -116,6 +118,7 @@
 		ADD92FA12F3ECE0300F4D128 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ADD92FA92F40714F00F4D128 /* CircleGroupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD92FAA2F40714F00F4D128 /* CircleGroupView.swift in Sources */,
 				ADD92FA32F3ECE2A00F4D128 /* OnboardingView.swift in Sources */,
 				ADD92F7C2F3ECDA500F4D128 /* ContentView.swift in Sources */,
 				ADD92FA52F3ECE3900F4D128 /* HomeView.swift in Sources */,
