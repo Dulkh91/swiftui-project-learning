@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OnboardingView: View {
     @AppStorage("onboarding") var isOnboardingCompleted: Bool = true
+    @State private var showImage = false
+    
     var body: some View {
         ZStack {
             Color.yellow.ignoresSafeArea()
@@ -35,20 +37,23 @@ struct OnboardingView: View {
                 //MARK: - IMAGE LOGO
                 VStack{
                     ZStack {
-                        Circle()
-                            .stroke(.white.opacity(0.3), lineWidth: 40)
-                            .frame(width: 260, height: 260,alignment: .center)
+                        //Reuse  view of circle group view
+                        CircleGroupView(ShapeColor: .white, ShapeOpacity: 0.4)
+                        if showImage {
+                            Image("imageDul")
+                                .resizable()
+                                .scaledToFit()
+                                .transition(.scale)
+                        }
                         
-                        Circle()
-                            .stroke(.white.opacity(0.3),
-                                    lineWidth: 80
-                            )
-                            .frame(width: 260, height: 260, alignment: .center)
-                        
-                        
-                        Image("imageDul")
-                            .resizable()
-                            .scaledToFit()
+                    }
+                    .onAppear{
+                        withAnimation(.spring(response: 0.5,
+                                              dampingFraction: 0.6,
+                                              blendDuration: 0.26
+                                             )) {
+                            showImage = true
+                        }
                     }
                 }//ENG: image logo
                 
