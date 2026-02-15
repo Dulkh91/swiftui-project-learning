@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Foundation
+import AVFoundation
 
 struct OnboardingView: View {
     @AppStorage("onboarding") var isOnboardingCompleted: Bool = true
@@ -138,6 +140,7 @@ struct OnboardingView: View {
                                         }
                                     
                                         .onEnded{ _ in
+                                            playAudio(soundName: "bell1", type: "mp3")
                                             withAnimation(Animation.easeOut(duration: 0.4)) {
                                                 if buttonOfSet <= buttonWith / 2 {
                                                     buttonOfSet = 0
