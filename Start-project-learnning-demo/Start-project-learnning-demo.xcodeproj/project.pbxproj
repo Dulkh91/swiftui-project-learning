@@ -60,6 +60,16 @@
 			path = "Start-project-learnning-demoUITests";
 			sourceTree = "<group>";
 		};
+		ADD92FCA2F41ABC700F4D128 /* Utilitys */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Utilitys;
+			sourceTree = "<group>";
+		};
+		ADD92FCC2F41ABFF00F4D128 /* Sounds */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +100,8 @@
 		ADD92F6D2F3ECDA500F4D128 = {
 			isa = PBXGroup;
 			children = (
+				ADD92FCC2F41ABFF00F4D128 /* Sounds */,
+				ADD92FCA2F41ABC700F4D128 /* Utilitys */,
 				ADD92FAD2F41649E00F4D128 /* README.md */,
 				ADD92FC32F41666900F4D128 /* HomeScreen.jpg */,
 				ADD92FA12F3ECE0300F4D128 /* Views */,
@@ -146,6 +158,8 @@
 			);
 			fileSystemSynchronizedGroups = (
 				ADD92F782F3ECDA500F4D128 /* Start-project-learnning-demo */,
+				ADD92FCA2F41ABC700F4D128 /* Utilitys */,
+				ADD92FCC2F41ABFF00F4D128 /* Sounds */,
 			);
 			name = "Start-project-learnning-demo";
 			packageProductDependencies = (
