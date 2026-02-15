@@ -10,11 +10,11 @@ import SwiftUI
 struct OnboardingView: View {
     @AppStorage("onboarding") var isOnboardingCompleted: Bool = true
     @State private var showImage = false
+    @State private var isAnimate: Bool = false
+    @State private var imageOffset: CGSize = .zero
     
 //    @State private var buttonWith: Double =  UIScreen.main.bounds.width - 80
     @State private var buttonOfSet: CGFloat = 0
-    
-
     
     var body: some View {
         ZStack {
@@ -47,11 +47,30 @@ struct OnboardingView: View {
                         ZStack {
                             //Reuse  view of circle group view
                             CircleGroupView(ShapeColor: .white, ShapeOpacity: 0.4)
+                                .offset(x: imageOffset.width * -1)
+                                .blur(radius: Double(abs(imageOffset.width) / 5))
+                                .animation(.easeOut(duration: 1), value: imageOffset)
+                            
+                            
                             if showImage {
                                 Image("imageDul")
                                     .resizable()
                                     .scaledToFit()
                                     .transition(.scale)
+                                    .offset(x: imageOffset.width * 1.2  , y: 0) // * 1.2 ដើម្បីបន្ថែមល្បឿន
+                                    .rotationEffect(Angle(degrees: Double(imageOffset.width / 30)))
+                                    .gesture(
+                                        DragGesture()
+                                            .onChanged{gesture in
+                                                if abs(imageOffset.width) <= 150 {
+                                                    imageOffset = gesture.translation
+                                                }
+                                                //abs(imageOffset.width) គឺប្តូរលេខទាំងអស់មកជា positive number
+                                            }
+                                            .onEnded{_ in
+                                                imageOffset = .zero
+                                            }
+                                    )
                             }
                             
                         }
@@ -119,10 +138,12 @@ struct OnboardingView: View {
                                         }
                                     
                                         .onEnded{ _ in
-                                            if buttonOfSet <= buttonWith / 2 {
-                                                buttonOfSet = 0
-                                            }else{
-                                                isOnboardingCompleted = false
+                                            withAnimation(Animation.easeOut(duration: 0.4)) {
+                                                if buttonOfSet <= buttonWith / 2 {
+                                                    buttonOfSet = 0
+                                                }else{
+                                                    isOnboardingCompleted = false
+                                                }
                                             }
                                         }
                                 )
@@ -137,6 +158,9 @@ struct OnboardingView: View {
             }//end Vstack
         }// end GOE
      }//end ZSTACK
+        .onAppear {
+            isAnimate = true
+        }
     }// End BODY
 }
 
