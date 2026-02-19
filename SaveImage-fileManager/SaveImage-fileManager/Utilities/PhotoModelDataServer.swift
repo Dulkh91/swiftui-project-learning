@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Combine
+internal import Combine
 
 class PhotoModelDataServer {
     static let instance = PhotoModelDataServer()//singleton
