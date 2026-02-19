@@ -11,7 +11,8 @@ import SwiftUI
 struct SaveImage_fileManagerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            //ContentView()
+            DownLoadingImageDemo()
         }
     }
 }

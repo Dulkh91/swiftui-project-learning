@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Combine
+internal import Combine
 
 class DownloadingImageViewModel: ObservableObject{
     @Published var dataArray: [PhotoModel] = []

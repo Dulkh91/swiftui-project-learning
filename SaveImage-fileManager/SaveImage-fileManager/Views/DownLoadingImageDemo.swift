@@ -21,7 +21,7 @@ struct DownLoadingImageDemo: View {
         NavigationView {
             List {
                 ForEach(vm.dataArray) { model in
-                    Text(model.title)
+                   DownloadingImageRow(model: model)
                 }
             }
             .navigationBarTitle("DownLoad Image")
