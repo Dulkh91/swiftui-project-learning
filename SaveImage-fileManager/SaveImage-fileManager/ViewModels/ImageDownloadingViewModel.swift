@@ -12,13 +12,30 @@ internal import Combine
 class ImageDownloadingViewModel: ObservableObject {
     @Published var image: UIImage? = nil
     @Published  var isLoading: Bool = false
+    
     var cancellables = Set<AnyCancellable>()
+    let manager = PhotoModelCacheManager.instance
+    //PhotoModelFileManager.instance
+    //PhotoModelCacheManager.instance
     
     let urlString: String
+    let imageKey: String
     
-    init(url: String){
+    init(url: String, key: String){
        urlString = url
-        downloadImage()
+        imageKey = key
+//        downloadImage()
+        getImage()
+    }
+    
+    func getImage(){
+        if let saveImage = manager.get(key: imageKey) {
+            image = saveImage
+            print("Getting save image")
+        }else{
+            downloadImage()
+            print("Download image now!")
+        }
     }
     
     func downloadImage(){
@@ -31,12 +48,14 @@ class ImageDownloadingViewModel: ObservableObject {
             .sink {[weak self] (_) in
                 self?.isLoading = false
             } receiveValue: {[weak self] (returnImage) in
-                self?.image = returnImage
+                guard
+                    let self = self,
+                    let image = returnImage else { return }
+                
+                self.image = image
+                self.manager.add(key: self.imageKey, value: image)
             }
             .store(in: &cancellables)
-
-            
-            
     }
 }
 

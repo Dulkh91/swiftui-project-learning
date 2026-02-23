@@ -12,7 +12,7 @@ struct DownloadingImageView: View {
     @StateObject var loader: ImageDownloadingViewModel
     
     init(url: String){
-        _loader = StateObject(wrappedValue: ImageDownloadingViewModel(url: url))
+        _loader = StateObject(wrappedValue: ImageDownloadingViewModel(url: url, key: url))
     }
     
     var body: some View {
