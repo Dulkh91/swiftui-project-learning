@@ -12,6 +12,7 @@ struct Touch_DownApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(Shop())
         }
     }
 }

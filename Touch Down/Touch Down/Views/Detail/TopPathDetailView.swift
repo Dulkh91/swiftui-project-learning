@@ -9,17 +9,18 @@ import SwiftUI
 
 struct TopPathDetailView: View {
     //MARK: - PROPERTY
+    @EnvironmentObject var shop: Shop
     @State private var isAnimation: Bool = false
     
     //MARK: - BODY
     var body: some View {
-        HStack{
+        HStack(alignment: .center, spacing: 6){
         //PRICE
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text("Price")
                     .fontWeight(.semibold)
                     
-                Text("\(sampleProducts.formattedPrice)")
+                Text("\(shop.selectedProduct?.formattedPrice ?? sampleProducts.formattedPrice)")
                     .font(.largeTitle)
                     .fontWeight(.black)
                     .scaleEffect(1.35, anchor: .leading)
@@ -29,7 +30,7 @@ struct TopPathDetailView: View {
             Spacer()
             
         //PHOTO
-            Image("\(sampleProducts.image)")
+            Image("\(shop.selectedProduct?.image ??  sampleProducts.image)")
                 .resizable()
                 .scaledToFit()
                 .offset(y: isAnimation ? 0: -35)
@@ -45,5 +46,6 @@ struct TopPathDetailView: View {
 //MARK: - PREVIEW
 #Preview(traits: .sizeThatFitsLayout) {
     TopPathDetailView()
+        .environmentObject(Shop())
         .padding()
 }

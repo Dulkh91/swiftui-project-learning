@@ -15,6 +15,7 @@ struct QuantityFavouriteDetailView: View {
         HStack(alignment: .center, spacing: 6) {
             Button {
                 if count > 0 {
+                    feetback.impactOccurred()
                     count -= 1
                 }
             } label: {
@@ -30,6 +31,7 @@ struct QuantityFavouriteDetailView: View {
             
             Button {
                 if count < 100 {
+                    feetback.impactOccurred()
                     count += 1
                 }
             } label: {
