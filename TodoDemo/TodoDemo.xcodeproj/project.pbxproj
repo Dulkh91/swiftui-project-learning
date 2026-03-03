@@ -7,73 +7,67 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AD9BB8172F5667C900748DE5 /* homepage1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9BB8122F5667C900748DE5 /* homepage1.jpg */; };
-		AD9BB8182F5667C900748DE5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AD9BB8162F5667C900748DE5 /* README.md */; };
-		AD9BB8192F5667C900748DE5 /* homepage2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9BB8132F5667C900748DE5 /* homepage2.jpg */; };
-		AD9BB81A2F5667C900748DE5 /* product-detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9BB8142F5667C900748DE5 /* product-detail.jpg */; };
+		AD9BB7BF2F565E3900748DE5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AD9BB7BE2F565E3900748DE5 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		ADD931962F4CEC6F00F4D128 /* PBXContainerItemProxy */ = {
+		AD9BB7122F532BED00748DE5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = ADD931802F4CEC6D00F4D128 /* Project object */;
+			containerPortal = AD9BB6F72F532BEA00748DE5 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = ADD931872F4CEC6D00F4D128;
-			remoteInfo = "Touch Down";
+			remoteGlobalIDString = AD9BB6FE2F532BEA00748DE5;
+			remoteInfo = TodoDemo;
 		};
-		ADD931A02F4CEC6F00F4D128 /* PBXContainerItemProxy */ = {
+		AD9BB71C2F532BED00748DE5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = ADD931802F4CEC6D00F4D128 /* Project object */;
+			containerPortal = AD9BB6F72F532BEA00748DE5 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = ADD931872F4CEC6D00F4D128;
-			remoteInfo = "Touch Down";
+			remoteGlobalIDString = AD9BB6FE2F532BEA00748DE5;
+			remoteInfo = TodoDemo;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AD9BB8122F5667C900748DE5 /* homepage1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = homepage1.jpg; sourceTree = "<group>"; };
-		AD9BB8132F5667C900748DE5 /* homepage2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = homepage2.jpg; sourceTree = "<group>"; };
-		AD9BB8142F5667C900748DE5 /* product-detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "product-detail.jpg"; sourceTree = "<group>"; };
-		AD9BB8162F5667C900748DE5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		ADD931882F4CEC6D00F4D128 /* Touch Down.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch Down.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		ADD931952F4CEC6F00F4D128 /* Touch DownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Touch DownTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		ADD9319F2F4CEC6F00F4D128 /* Touch DownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Touch DownUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD9BB6FF2F532BEA00748DE5 /* TodoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD9BB7112F532BED00748DE5 /* TodoDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD9BB71B2F532BED00748DE5 /* TodoDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD9BB7BE2F565E3900748DE5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		ADD9318A2F4CEC6D00F4D128 /* Touch Down */ = {
+		AD9BB7012F532BEA00748DE5 /* TodoDemo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Touch Down";
+			path = TodoDemo;
 			sourceTree = "<group>";
 		};
-		ADD931982F4CEC6F00F4D128 /* Touch DownTests */ = {
+		AD9BB7142F532BED00748DE5 /* TodoDemoTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Touch DownTests";
+			path = TodoDemoTests;
 			sourceTree = "<group>";
 		};
-		ADD931A22F4CEC6F00F4D128 /* Touch DownUITests */ = {
+		AD9BB71E2F532BED00748DE5 /* TodoDemoUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Touch DownUITests";
+			path = TodoDemoUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		ADD931852F4CEC6D00F4D128 /* Frameworks */ = {
+		AD9BB6FC2F532BEA00748DE5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ADD931922F4CEC6F00F4D128 /* Frameworks */ = {
+		AD9BB70E2F532BED00748DE5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ADD9319C2F4CEC6F00F4D128 /* Frameworks */ = {
+		AD9BB7182F532BED00748DE5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -83,34 +77,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AD9BB8152F5667C900748DE5 /* Image-Readme */ = {
+		AD9BB6F62F532BEA00748DE5 = {
 			isa = PBXGroup;
 			children = (
-				AD9BB8122F5667C900748DE5 /* homepage1.jpg */,
-				AD9BB8132F5667C900748DE5 /* homepage2.jpg */,
-				AD9BB8142F5667C900748DE5 /* product-detail.jpg */,
-			);
-			path = "Image-Readme";
-			sourceTree = "<group>";
-		};
-		ADD9317F2F4CEC6D00F4D128 = {
-			isa = PBXGroup;
-			children = (
-				AD9BB8152F5667C900748DE5 /* Image-Readme */,
-				AD9BB8162F5667C900748DE5 /* README.md */,
-				ADD9318A2F4CEC6D00F4D128 /* Touch Down */,
-				ADD931982F4CEC6F00F4D128 /* Touch DownTests */,
-				ADD931A22F4CEC6F00F4D128 /* Touch DownUITests */,
-				ADD931892F4CEC6D00F4D128 /* Products */,
+				AD9BB7BE2F565E3900748DE5 /* README.md */,
+				AD9BB7012F532BEA00748DE5 /* TodoDemo */,
+				AD9BB7142F532BED00748DE5 /* TodoDemoTests */,
+				AD9BB71E2F532BED00748DE5 /* TodoDemoUITests */,
+				AD9BB7002F532BEA00748DE5 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		ADD931892F4CEC6D00F4D128 /* Products */ = {
+		AD9BB7002F532BEA00748DE5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ADD931882F4CEC6D00F4D128 /* Touch Down.app */,
-				ADD931952F4CEC6F00F4D128 /* Touch DownTests.xctest */,
-				ADD9319F2F4CEC6F00F4D128 /* Touch DownUITests.xctest */,
+				AD9BB6FF2F532BEA00748DE5 /* TodoDemo.app */,
+				AD9BB7112F532BED00748DE5 /* TodoDemoTests.xctest */,
+				AD9BB71B2F532BED00748DE5 /* TodoDemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,138 +101,135 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ADD931872F4CEC6D00F4D128 /* Touch Down */ = {
+		AD9BB6FE2F532BEA00748DE5 /* TodoDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ADD931A92F4CEC6F00F4D128 /* Build configuration list for PBXNativeTarget "Touch Down" */;
+			buildConfigurationList = AD9BB7252F532BED00748DE5 /* Build configuration list for PBXNativeTarget "TodoDemo" */;
 			buildPhases = (
-				ADD931842F4CEC6D00F4D128 /* Sources */,
-				ADD931852F4CEC6D00F4D128 /* Frameworks */,
-				ADD931862F4CEC6D00F4D128 /* Resources */,
+				AD9BB6FB2F532BEA00748DE5 /* Sources */,
+				AD9BB6FC2F532BEA00748DE5 /* Frameworks */,
+				AD9BB6FD2F532BEA00748DE5 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				ADD9318A2F4CEC6D00F4D128 /* Touch Down */,
+				AD9BB7012F532BEA00748DE5 /* TodoDemo */,
 			);
-			name = "Touch Down";
+			name = TodoDemo;
 			packageProductDependencies = (
 			);
-			productName = "Touch Down";
-			productReference = ADD931882F4CEC6D00F4D128 /* Touch Down.app */;
+			productName = TodoDemo;
+			productReference = AD9BB6FF2F532BEA00748DE5 /* TodoDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		ADD931942F4CEC6F00F4D128 /* Touch DownTests */ = {
+		AD9BB7102F532BED00748DE5 /* TodoDemoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ADD931AC2F4CEC6F00F4D128 /* Build configuration list for PBXNativeTarget "Touch DownTests" */;
+			buildConfigurationList = AD9BB7282F532BED00748DE5 /* Build configuration list for PBXNativeTarget "TodoDemoTests" */;
 			buildPhases = (
-				ADD931912F4CEC6F00F4D128 /* Sources */,
-				ADD931922F4CEC6F00F4D128 /* Frameworks */,
-				ADD931932F4CEC6F00F4D128 /* Resources */,
+				AD9BB70D2F532BED00748DE5 /* Sources */,
+				AD9BB70E2F532BED00748DE5 /* Frameworks */,
+				AD9BB70F2F532BED00748DE5 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				ADD931972F4CEC6F00F4D128 /* PBXTargetDependency */,
+				AD9BB7132F532BED00748DE5 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				ADD931982F4CEC6F00F4D128 /* Touch DownTests */,
+				AD9BB7142F532BED00748DE5 /* TodoDemoTests */,
 			);
-			name = "Touch DownTests";
+			name = TodoDemoTests;
 			packageProductDependencies = (
 			);
-			productName = "Touch DownTests";
-			productReference = ADD931952F4CEC6F00F4D128 /* Touch DownTests.xctest */;
+			productName = TodoDemoTests;
+			productReference = AD9BB7112F532BED00748DE5 /* TodoDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		ADD9319E2F4CEC6F00F4D128 /* Touch DownUITests */ = {
+		AD9BB71A2F532BED00748DE5 /* TodoDemoUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ADD931AF2F4CEC6F00F4D128 /* Build configuration list for PBXNativeTarget "Touch DownUITests" */;
+			buildConfigurationList = AD9BB72B2F532BED00748DE5 /* Build configuration list for PBXNativeTarget "TodoDemoUITests" */;
 			buildPhases = (
-				ADD9319B2F4CEC6F00F4D128 /* Sources */,
-				ADD9319C2F4CEC6F00F4D128 /* Frameworks */,
-				ADD9319D2F4CEC6F00F4D128 /* Resources */,
+				AD9BB7172F532BED00748DE5 /* Sources */,
+				AD9BB7182F532BED00748DE5 /* Frameworks */,
+				AD9BB7192F532BED00748DE5 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				ADD931A12F4CEC6F00F4D128 /* PBXTargetDependency */,
+				AD9BB71D2F532BED00748DE5 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				ADD931A22F4CEC6F00F4D128 /* Touch DownUITests */,
+				AD9BB71E2F532BED00748DE5 /* TodoDemoUITests */,
 			);
-			name = "Touch DownUITests";
+			name = TodoDemoUITests;
 			packageProductDependencies = (
 			);
-			productName = "Touch DownUITests";
-			productReference = ADD9319F2F4CEC6F00F4D128 /* Touch DownUITests.xctest */;
+			productName = TodoDemoUITests;
+			productReference = AD9BB71B2F532BED00748DE5 /* TodoDemoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		ADD931802F4CEC6D00F4D128 /* Project object */ = {
+		AD9BB6F72F532BEA00748DE5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
-					ADD931872F4CEC6D00F4D128 = {
+					AD9BB6FE2F532BEA00748DE5 = {
 						CreatedOnToolsVersion = 26.2;
 					};
-					ADD931942F4CEC6F00F4D128 = {
+					AD9BB7102F532BED00748DE5 = {
 						CreatedOnToolsVersion = 26.2;
-						TestTargetID = ADD931872F4CEC6D00F4D128;
+						TestTargetID = AD9BB6FE2F532BEA00748DE5;
 					};
-					ADD9319E2F4CEC6F00F4D128 = {
+					AD9BB71A2F532BED00748DE5 = {
 						CreatedOnToolsVersion = 26.2;
-						TestTargetID = ADD931872F4CEC6D00F4D128;
+						TestTargetID = AD9BB6FE2F532BEA00748DE5;
 					};
 				};
 			};
-			buildConfigurationList = ADD931832F4CEC6D00F4D128 /* Build configuration list for PBXProject "Touch Down" */;
+			buildConfigurationList = AD9BB6FA2F532BEA00748DE5 /* Build configuration list for PBXProject "TodoDemo" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = ADD9317F2F4CEC6D00F4D128;
+			mainGroup = AD9BB6F62F532BEA00748DE5;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = ADD931892F4CEC6D00F4D128 /* Products */;
+			productRefGroup = AD9BB7002F532BEA00748DE5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ADD931872F4CEC6D00F4D128 /* Touch Down */,
-				ADD931942F4CEC6F00F4D128 /* Touch DownTests */,
-				ADD9319E2F4CEC6F00F4D128 /* Touch DownUITests */,
+				AD9BB6FE2F532BEA00748DE5 /* TodoDemo */,
+				AD9BB7102F532BED00748DE5 /* TodoDemoTests */,
+				AD9BB71A2F532BED00748DE5 /* TodoDemoUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		ADD931862F4CEC6D00F4D128 /* Resources */ = {
+		AD9BB6FD2F532BEA00748DE5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD9BB8172F5667C900748DE5 /* homepage1.jpg in Resources */,
-				AD9BB8182F5667C900748DE5 /* README.md in Resources */,
-				AD9BB8192F5667C900748DE5 /* homepage2.jpg in Resources */,
-				AD9BB81A2F5667C900748DE5 /* product-detail.jpg in Resources */,
+				AD9BB7BF2F565E3900748DE5 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ADD931932F4CEC6F00F4D128 /* Resources */ = {
+		AD9BB70F2F532BED00748DE5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ADD9319D2F4CEC6F00F4D128 /* Resources */ = {
+		AD9BB7192F532BED00748DE5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -259,21 +239,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		ADD931842F4CEC6D00F4D128 /* Sources */ = {
+		AD9BB6FB2F532BEA00748DE5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ADD931912F4CEC6F00F4D128 /* Sources */ = {
+		AD9BB70D2F532BED00748DE5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ADD9319B2F4CEC6F00F4D128 /* Sources */ = {
+		AD9BB7172F532BED00748DE5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -283,20 +263,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		ADD931972F4CEC6F00F4D128 /* PBXTargetDependency */ = {
+		AD9BB7132F532BED00748DE5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = ADD931872F4CEC6D00F4D128 /* Touch Down */;
-			targetProxy = ADD931962F4CEC6F00F4D128 /* PBXContainerItemProxy */;
+			target = AD9BB6FE2F532BEA00748DE5 /* TodoDemo */;
+			targetProxy = AD9BB7122F532BED00748DE5 /* PBXContainerItemProxy */;
 		};
-		ADD931A12F4CEC6F00F4D128 /* PBXTargetDependency */ = {
+		AD9BB71D2F532BED00748DE5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = ADD931872F4CEC6D00F4D128 /* Touch Down */;
-			targetProxy = ADD931A02F4CEC6F00F4D128 /* PBXContainerItemProxy */;
+			target = AD9BB6FE2F532BEA00748DE5 /* TodoDemo */;
+			targetProxy = AD9BB71C2F532BED00748DE5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		ADD931A72F4CEC6F00F4D128 /* Debug */ = {
+		AD9BB7232F532BED00748DE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -359,7 +339,7 @@
 			};
 			name = Debug;
 		};
-		ADD931A82F4CEC6F00F4D128 /* Release */ = {
+		AD9BB7242F532BED00748DE5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -415,7 +395,7 @@
 			};
 			name = Release;
 		};
-		ADD931AA2F4CEC6F00F4D128 /* Debug */ = {
+		AD9BB7262F532BED00748DE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -427,15 +407,13 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dul.Touch-Down";
+				PRODUCT_BUNDLE_IDENTIFIER = dul.TodoDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -447,7 +425,7 @@
 			};
 			name = Debug;
 		};
-		ADD931AB2F4CEC6F00F4D128 /* Release */ = {
+		AD9BB7272F532BED00748DE5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -459,15 +437,13 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dul.Touch-Down";
+				PRODUCT_BUNDLE_IDENTIFIER = dul.TodoDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -479,7 +455,7 @@
 			};
 			name = Release;
 		};
-		ADD931AD2F4CEC6F00F4D128 /* Debug */ = {
+		AD9BB7292F532BED00748DE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -488,7 +464,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dul.Touch-DownTests";
+				PRODUCT_BUNDLE_IDENTIFIER = dul.TodoDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -496,11 +472,11 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Touch Down.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Touch Down";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TodoDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TodoDemo";
 			};
 			name = Debug;
 		};
-		ADD931AE2F4CEC6F00F4D128 /* Release */ = {
+		AD9BB72A2F532BED00748DE5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -509,7 +485,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dul.Touch-DownTests";
+				PRODUCT_BUNDLE_IDENTIFIER = dul.TodoDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -517,18 +493,18 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Touch Down.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Touch Down";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TodoDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TodoDemo";
 			};
 			name = Release;
 		};
-		ADD931B02F4CEC6F00F4D128 /* Debug */ = {
+		AD9BB72C2F532BED00748DE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dul.Touch-DownUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = dul.TodoDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -536,18 +512,18 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Touch Down";
+				TEST_TARGET_NAME = TodoDemo;
 			};
 			name = Debug;
 		};
-		ADD931B12F4CEC6F00F4D128 /* Release */ = {
+		AD9BB72D2F532BED00748DE5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dul.Touch-DownUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = dul.TodoDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -555,50 +531,50 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Touch Down";
+				TEST_TARGET_NAME = TodoDemo;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ADD931832F4CEC6D00F4D128 /* Build configuration list for PBXProject "Touch Down" */ = {
+		AD9BB6FA2F532BEA00748DE5 /* Build configuration list for PBXProject "TodoDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ADD931A72F4CEC6F00F4D128 /* Debug */,
-				ADD931A82F4CEC6F00F4D128 /* Release */,
+				AD9BB7232F532BED00748DE5 /* Debug */,
+				AD9BB7242F532BED00748DE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ADD931A92F4CEC6F00F4D128 /* Build configuration list for PBXNativeTarget "Touch Down" */ = {
+		AD9BB7252F532BED00748DE5 /* Build configuration list for PBXNativeTarget "TodoDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ADD931AA2F4CEC6F00F4D128 /* Debug */,
-				ADD931AB2F4CEC6F00F4D128 /* Release */,
+				AD9BB7262F532BED00748DE5 /* Debug */,
+				AD9BB7272F532BED00748DE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ADD931AC2F4CEC6F00F4D128 /* Build configuration list for PBXNativeTarget "Touch DownTests" */ = {
+		AD9BB7282F532BED00748DE5 /* Build configuration list for PBXNativeTarget "TodoDemoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ADD931AD2F4CEC6F00F4D128 /* Debug */,
-				ADD931AE2F4CEC6F00F4D128 /* Release */,
+				AD9BB7292F532BED00748DE5 /* Debug */,
+				AD9BB72A2F532BED00748DE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ADD931AF2F4CEC6F00F4D128 /* Build configuration list for PBXNativeTarget "Touch DownUITests" */ = {
+		AD9BB72B2F532BED00748DE5 /* Build configuration list for PBXNativeTarget "TodoDemoUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ADD931B02F4CEC6F00F4D128 /* Debug */,
-				ADD931B12F4CEC6F00F4D128 /* Release */,
+				AD9BB72C2F532BED00748DE5 /* Debug */,
+				AD9BB72D2F532BED00748DE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = ADD931802F4CEC6D00F4D128 /* Project object */;
+	rootObject = AD9BB6F72F532BEA00748DE5 /* Project object */;
 }
