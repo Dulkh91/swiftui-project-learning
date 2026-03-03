@@ -9,16 +9,17 @@ import SwiftUI
 
 struct ProductDetailtView: View {
     //MARK: - PROPERTY
-    
+    @EnvironmentObject var shop: Shop
     //MARK: - BODY
     var body: some View {
         GeometryReader { geo in
             ZStack (alignment: .center){
-                VStack(alignment: .leading, spacing: 0){
+                VStack(alignment: .leading, spacing: 6){
                     //Navibar
                     NavigationBarDetailView()
+                        .zIndex(2)
                         .padding()
-                        .padding(.top, geo.safeAreaInsets.top)
+                        .padding(.top, geo.safeAreaInsets.top + 20)
                     //Header
                     HeaderDetailView()
                         .padding(.horizontal)
@@ -37,7 +38,7 @@ struct ProductDetailtView: View {
                             .padding(.bottom, 10)
                         //Description
                         ScrollView(.vertical, showsIndicators: false){
-                            Text(sampleProducts.description)
+                            Text(shop.selectedProduct?.description ?? sampleProducts.description)
                                 .font(.system(.body, design: .rounded))
                                 .foregroundColor(.gray)
                                 .multilineTextAlignment(.leading)
@@ -69,9 +70,9 @@ struct ProductDetailtView: View {
                 .zIndex(0)
                 .ignoresSafeArea()
                 .background(
-                    Color(red: sampleProducts.red,
-                          green: sampleProducts.green,
-                          blue: sampleProducts.blue))
+                    Color(red: shop.selectedProduct?.red ?? sampleProducts.red,
+                          green: shop.selectedProduct?.green ?? sampleProducts.green,
+                          blue: shop.selectedProduct?.blue ?? sampleProducts.blue))
                 .ignoresSafeArea(.all, edges: .all)
             }//: ZSTACK
             .frame(width: geo.size.width)
@@ -80,6 +81,7 @@ struct ProductDetailtView: View {
 }
 
 //MARK: - PREVIEW
-#Preview(traits: .fixedLayout(width: 375, height: 812)) {
+#Preview {
     ProductDetailtView()
+        .environmentObject(Shop())
 }

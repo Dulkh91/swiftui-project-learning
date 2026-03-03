@@ -89,3 +89,82 @@
 6) QuantityFavouriteDetailView គឺផ្នែកប៊ូតុនសម្រាប់ចុចយកចំនួន និង heart សម្រាបថាចូលចិត្ត។
 
 7) AddToCartDetailView ជាផ្នែកប៊ូតុនសម្រាប់ add វាចូលក្នុង cart ។
+
+## 4) ការបោះ data ឆ្លង page:
+ក្នុងការបោះទិន្ន័យទៅឲ្យ detail page គឺប្រើតាមរយៈ EnvironmentObject ។ ដំបូងយើងបង្កើត class មួយ៖
+
+```js
+/Utilities/Shop.swift
+
+class Shop: ObservableObject{
+    @Published var showingProduct: Bool = false
+    @Published var selectedProduct: ProductModel? = nil
+}
+```
+- ការប្រើវាជា global គឺត្រូវដាក់នៅ main page:
+```js
+/App/Touch_DownApp
+
+WindowGroup {
+ContentView()
+    .environmentObject(Shop())
+}
+```
+ការទទួលទិន្ន័យដោយប្រើ៖
+```swift
+struct NavigationBarDetailView: View {
+    //MARK: - PROPERTY
+    @EnvironmentObject var shop: Shop
+    
+    //MARK: - BODY
+    var body: some View {
+        HStack {
+            Button {
+                withAnimation(.easeInOut) {
+                    feetback.impactOccurred()
+                    shop.selectedProduct = nil
+                    shop.showingProduct = false
+                }
+            } label: {
+                Image(systemName: "chevron.left")
+                    .font(.title)
+                    .foregroundColor(.white)
+                
+            }
+....
+```
+Note: កុំភ្លេចហៅវាមកដាក់នៅក្នុង Preview ដើម្បីប្រើនៅក្នុង preview:
+``` swift
+//MARK: - PREVIEW
+#Preview(traits: .sizeThatFitsLayout) {
+    NavigationBarDetailView()
+        .environmentObject(Shop())
+        .padding()
+        .background(Color.gray)
+}
+```
+### 5) UIImpactFeedbackGenerator:
+UIImpactFeedbackGenerator គឺជា class ក្នុង UIKit ដែលប្រើសម្រាប់បង្កើត haptic feedback (ការញ័រ/ការប៉ះមានអារម្មណ៍) នៅលើ iPhone ដែលមាន Taptic Engine។ វាអនុញ្ញាតឲ្យអ្នកបញ្ចេញការញ័រ ដើម្បីបន្ថែមអារម្មណ៍ interaction នៅពេលអ្នកប្រើ UI elements (ឧ. ប៊ូតុង, gestures)។
+
+#### Styles Available
+
+```cmd
+.light → ការញ័របន្តិច
+
+.medium → ការញ័រមធ្យម
+
+.heavy → ការញ័រខ្លាំង
+
+.soft → ការញ័រមានអារម្មណ៍ទន់
+
+.rigid → ការញ័រមានអារម្មណ៍រឹង
+
+```
+
+#### Use Cases
+Button taps: បន្ថែម haptic feedback ពេលចុចប៊ូតុង
+
+Gestures: បង្ហាញអារម្មណ៍ពេល drag/drop ឬ swipe
+
+Game interactions: បន្ថែមអារម្មណ៍ពេលមាន collision ឬ impact
+

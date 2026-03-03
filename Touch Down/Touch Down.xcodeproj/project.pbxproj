@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AD9BB8172F5667C900748DE5 /* homepage1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9BB8122F5667C900748DE5 /* homepage1.jpg */; };
+		AD9BB8182F5667C900748DE5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AD9BB8162F5667C900748DE5 /* README.md */; };
+		AD9BB8192F5667C900748DE5 /* homepage2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9BB8132F5667C900748DE5 /* homepage2.jpg */; };
+		AD9BB81A2F5667C900748DE5 /* product-detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9BB8142F5667C900748DE5 /* product-detail.jpg */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		ADD931962F4CEC6F00F4D128 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +31,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD9BB8122F5667C900748DE5 /* homepage1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = homepage1.jpg; sourceTree = "<group>"; };
+		AD9BB8132F5667C900748DE5 /* homepage2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = homepage2.jpg; sourceTree = "<group>"; };
+		AD9BB8142F5667C900748DE5 /* product-detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "product-detail.jpg"; sourceTree = "<group>"; };
+		AD9BB8162F5667C900748DE5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		ADD931882F4CEC6D00F4D128 /* Touch Down.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch Down.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADD931952F4CEC6F00F4D128 /* Touch DownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Touch DownTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADD9319F2F4CEC6F00F4D128 /* Touch DownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Touch DownUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,9 +83,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD9BB8152F5667C900748DE5 /* Image-Readme */ = {
+			isa = PBXGroup;
+			children = (
+				AD9BB8122F5667C900748DE5 /* homepage1.jpg */,
+				AD9BB8132F5667C900748DE5 /* homepage2.jpg */,
+				AD9BB8142F5667C900748DE5 /* product-detail.jpg */,
+			);
+			path = "Image-Readme";
+			sourceTree = "<group>";
+		};
 		ADD9317F2F4CEC6D00F4D128 = {
 			isa = PBXGroup;
 			children = (
+				AD9BB8152F5667C900748DE5 /* Image-Readme */,
+				AD9BB8162F5667C900748DE5 /* README.md */,
 				ADD9318A2F4CEC6D00F4D128 /* Touch Down */,
 				ADD931982F4CEC6F00F4D128 /* Touch DownTests */,
 				ADD931A22F4CEC6F00F4D128 /* Touch DownUITests */,
@@ -212,6 +235,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD9BB8172F5667C900748DE5 /* homepage1.jpg in Resources */,
+				AD9BB8182F5667C900748DE5 /* README.md in Resources */,
+				AD9BB8192F5667C900748DE5 /* homepage2.jpg in Resources */,
+				AD9BB81A2F5667C900748DE5 /* product-detail.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
