@@ -6,31 +6,6 @@
 //
 
 import SwiftUI
-internal import Combine
-
-@MainActor
-final class SignInEmailModel: ObservableObject{
-    @Published var email = ""
-    @Published var password = ""
-    
-    func signUp() async throws{
-        guard !email.isEmpty, !password.isEmpty else {
-            print("No email or password found!")
-            return
-        }
-        let _ = try await AuthenticationManager.shared.creatUser(email: email, password: password)
-        
-    }//: SignUp
-    
-    func signIn() async throws{
-        guard !email.isEmpty, !password.isEmpty else {
-            print("No email or password found!")
-            return
-        }
-        let _ = try await AuthenticationManager.shared.signInUser(email: email, password: password)
-        
-    }//: SignIn
-}
 
 struct SignInEmailView: View {
     //MARK: - PROPERTY

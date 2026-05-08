@@ -287,3 +287,246 @@ Enabling Google as a sign-in provider in the Firebase console and configuring th
 • បន្ទាប់ពីជោគជ័យ អ្នកប្រើនឹងមាន Firebase user session ដែលអាចប្រើទិន្នន័យ authenticated នៅក្នុង app។
 
 
+## Setup user at firestore
+### userManager
+
+<details><summary> Show more.. </summary>
+
+```swift
+import Foundation
+import FirebaseFirestore
+import FirebaseAuth
+import FirebaseCore
+import FirebaseSharedSwift
+
+
+struct DBUser: Codable {
+    let userId: String
+    let email: String?
+    let photoURL: String?
+    let dateCreated: Date?
+}
+
+final class UserManager{
+    static let shared = UserManager()
+    private init(){}
+    
+    private let userCollection = Firestore.firestore().collection("users")
+    
+    private func userDocument(userId: String) -> DocumentReference{
+        userCollection.document(userId)
+    }
+    
+    func createNewUser(auth: AuthDataResultModel) async throws {
+        var userData:[String: Any] = [
+            "user_id": auth.uid,
+            "date_created": Timestamp()
+        ]
+        
+        if let email = auth.email {
+            userData["email"] = email
+        }
+        if let photoURL = auth.photoURL {
+            userData["photo_url"] = photoURL
+        }
+        
+        try await userDocument(userId: auth.uid).setData(userData, merge: false)
+        
+    }
+    
+    func getUser(useId: String) async throws -> DBUser {
+        let snapshot =  try await userDocument(userId: useId).getDocument()
+        
+        guard let data = snapshot.data() else {
+            throw URLError(.badServerResponse)
+        }
+        
+        let userId = data["user_id"] as? String
+        let email = data["email"] as? String
+        let photoURL = data["photo_url"] as? String
+        let createdAt = data["date_created"] as? Date
+        
+       return DBUser(userId: useId, email: email, photoURL: photoURL, dateCreated: createdAt)
+    }
+    
+    
+}
+```
+### subview/AuthentcationViewModel
+
+```swift
+import Foundation
+internal import Combine
+
+@MainActor
+final class AuthentcationViewModel: ObservableObject{
+    
+    func signIn() async throws{
+        let helper = SignInGoogleHelper()
+        let tokens = try await helper.signIn()
+        let authDataResult = try await AuthenticationManager.shared.signinWithGoogle(tokens: tokens)
+        let user = DBUser.init(userId: authDataResult.uid,
+                               email: authDataResult.email,
+                               photoURL: authDataResult.photoURL,
+                               dateCreated: Date())
+
+        try await UserManager.shared.createNewUser(user: user)
+           
+    } 
+}
+
+```
+</details>
+
+# Fetch Data and Upload to firestore
+## Fetch Data
+
+<details><summary>Show more..</summary>
+
+### បង្កើត type ទៅតាម api
+**/utilities/ProductDatabase**
+
+```swift
+struct ProductArray: Codable {
+    let products: [Product]
+    let total, skip, limit: Int
+}
+
+struct Product: Identifiable, Codable, Equatable {
+    let id: Int
+    let title: String?
+    let description: String?
+    let price: Double?
+    let discountPercentage: Double?
+    let rating: Double?
+    let stock: Int?
+    let brand, category: String?
+    let thumbnail: String?
+    let images: [String]?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case description
+        case price
+        case discountPercentage
+        case rating
+        case stock
+        case brand
+        case category
+        case thumbnail
+        case images
+    }
+    
+    static func ==(lhs: Product, rhs: Product) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+}
+```
+### fetch api
+**/core/Product/ProductView**
+```swift
+import SwiftUI
+internal import Combine
+
+@MainActor
+final class ProductViewModel: ObservableObject {
+    
+    func downloadProductAndUploadToFirebase(){
+        guard let url = URL(string: "https://dummyjson.com/products")else{return}
+        
+        Task{
+            do{
+                let request = URLRequest(url: url)
+                let (data, response) = try await URLSession.shared.data(for: request)
+                let products = try JSONDecoder().decode(ProductArray.self, from: data)
+                
+                print("SUCCESS")
+                print(products.products.count)
+            }catch{
+                print(error)
+            }
+        }
+        
+    }
+}
+
+struct ProductView: View {
+    @StateObject private var viewModel = ProductViewModel()
+    var body: some View {
+        ZStack{
+            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        }
+        .navigationTitle("Product")
+        .onAppear{
+            viewModel.downloadProductAndUploadToFirebase()
+        }
+        
+    }
+}
+```
+យើង run វារួចហើយប្រសិនជាវាចេញថា Success នោះពិតជាដំណើរការល្អ។
+
+### Upload product to firebase
+**/core/Firebase/ProductManager**
+```swift
+import Foundation
+import FirebaseFirestore
+import Firebase
+
+
+final class ProductManager {
+    static let share = ProductManager()
+    private init(){}
+    
+    private let productCollection = Firestore.firestore().collection("products")
+    
+    private func productDocument(productId: String) -> DocumentReference {
+        productCollection.document(productId)
+    }
+    
+    func uploadProduct(product: Product) async throws{
+        try productDocument(productId: String(product.id)).setData(from: product, merge: false)
+    }    
+}
+```
+ចំនែក ProductView របស់យើងបន្ថែបកូនបន្ទិចទៀត៖
+
+**/core/Product/ProductView**
+```swift
+...
+final class ProductViewModel: ObservableObject {
+    
+    func downloadProductAndUploadToFirebase(){
+        guard let url = URL(string: "https://dummyjson.com/products")else{return}
+        
+        Task{
+            do{
+                let request = URLRequest(url: url)
+                let (data, _) = try await URLSession.shared.data(for: request)
+                let products = try JSONDecoder().decode(ProductArray.self, from: data)
+                
+                let productArray = products.products
+                
+                for product in productArray{
+                    try await ProductManager.share.uploadProduct(product: product)
+                
+                }
+                
+                print("SUCCESS")
+                print(products.products.count)
+            }catch{
+                print(error)
+            }
+        }
+        
+    }
+}
+.....
+
+```
+ប្រសិនជាចេញ success នោះវាដំណើរការហើយ
+
+</details>
+

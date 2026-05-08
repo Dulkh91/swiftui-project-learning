@@ -6,22 +6,12 @@
 //
 
 import SwiftUI
-internal import Combine
 import GoogleSignIn
 import GoogleSignInSwift
 import FirebaseAuth
 
 
-@MainActor
-final class AuthentcationViewModel: ObservableObject{
-    
-    func signIn() async throws{
-        let helper = SignInGoogleHelper()
-        let tokens = try await helper.signIn()
-        try await AuthenticationManager.shared.signinWithGoogle(tokens: tokens)
-           
-    }
-}
+
 
 struct AuthenticationView: View {
     //MARK: - PROPERTY
