@@ -10,18 +10,27 @@ internal import Combine
 
 @MainActor
 final class ProductViewModel: ObservableObject {
-        
+    @Published private(set) var products: [Product] = []
+    
+    func getAllProducts()async throws{
+        self.products = try await ProductManager.share.getAllProducts()
+    }
 
 }
 
 struct ProductView: View {
     @StateObject private var viewModel = ProductViewModel()
     var body: some View {
-        ZStack{
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List{
+            ForEach(viewModel.products) { product in
+                ProductCellView(product: product)
+            }
         }
         .navigationTitle("Product")
         
+        .task {
+            try? await viewModel.getAllProducts()
+        }
         
     }
 }

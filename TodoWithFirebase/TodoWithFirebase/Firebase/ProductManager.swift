@@ -24,8 +24,27 @@ final class ProductManager {
         try productDocument(productId: String(product.id)).setData(from: product, merge: false)
     }
     
-    func getProducts(productId: String) async throws -> Product {
+    func getAllProducts() async throws -> [Product] {
+        try await productCollection.getDocuments2(as: Product.self)
+    }
+    
+    func getProduct(productId: String) async throws -> Product {
         try await productDocument(productId: productId).getDocument(as: Product.self)
     }
     
+}
+
+extension Query{
+    func getDocuments2(as type: Product.Type) async throws -> [Product]{
+        let snapshot = try await self.getDocuments()
+        
+        var products: [Product] = []
+        
+        for document in snapshot.documents {
+            let product = try document.data(as: Product.self)
+            products.append(product)
+        }
+        
+        return products
+    }
 }
