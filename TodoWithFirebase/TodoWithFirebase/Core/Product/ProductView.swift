@@ -11,33 +11,45 @@ internal import Combine
 @MainActor
 final class ProductViewModel: ObservableObject {
     @Published private(set) var products: [Product] = []
+    
     @Published var selectedFilter: FilterOption? = nil
     @Published var selectedCategory: CategoryOption? = nil
     
-    func getAllProducts()async throws{
-        self.products = try await ProductManager.share.getAllProducts()
-    }
+//    func getAllProducts()async throws{
+//        self.products = try await ProductManager.share.getAllProducts()
+//    }
     
     //MARK: - Filter Option
     enum FilterOption: String, CaseIterable {
         case noFilter
         case priceHigh
         case priceLow
+        
+        var priceDesceding: Bool?{
+            switch self {
+            case .noFilter: return nil
+            case .priceHigh: return true
+            case .priceLow: return false
+            }
+        }
     }
 
-    func filterSelected(option: FilterOption) async throws{
-        switch option {
-        case .noFilter:
-            self.products = try await ProductManager.share.getAllProducts()
-            break
-        case .priceHigh:
-            self.products = try await ProductManager.share.getAllProductSortedByPrice(desceding: true)
-            break
-        case .priceLow:
-            self.products = try await ProductManager.share.getAllProductSortedByPrice(desceding: false)
-            break
-        }
+    func filterSelected(option: FilterOption){
         self.selectedFilter = option
+        self.getProducts()
+        
+//        switch option {
+//        case .noFilter:
+//            self.products = try await ProductManager.share.getAllProducts()
+//            break
+//        case .priceHigh:
+//            self.products = try await ProductManager.share.getAllProductSortedByPrice(desceding: true)
+//            break
+//        case .priceLow:
+//            self.products = try await ProductManager.share.getAllProductSortedByPrice(desceding: false)
+//            break
+//        }
+       
     }
     
     //MARK: - Filter BY Category
@@ -47,17 +59,34 @@ final class ProductViewModel: ObservableObject {
         case fragrances
         case furniture
         case groceries
-    }
-    func CategorySelected(option: CategoryOption) async throws{
-        switch option {
-        case .noCategory:
-            self.products = try await ProductManager.share.getAllProducts()
-            break
-        case .beauty,.fragrances,.furniture,.groceries:
-            self.products = try await ProductManager.share.getAllProductForCategory(category: option.rawValue)
-            break
+        
+        var categoryKey: String?{
+            if self == .noCategory {
+                return nil
+            }
+            return self.rawValue
         }
+    }
+    
+    func categorySelected(option: CategoryOption){
         self.selectedCategory = option
+        self.getProducts()
+        
+//        switch option {
+//        case .noCategory:
+//            self.products = try await ProductManager.share.getAllProducts()
+//            break
+//        case .beauty,.fragrances,.furniture,.groceries:
+//            self.products = try await ProductManager.share.getAllProductForCategory(category: option.rawValue)
+//            break
+//        }
+//        
+    }
+    
+    func getProducts() {
+        Task{
+            self.products = try await ProductManager.share.getAllProducts(priceDesceding: selectedFilter?.priceDesceding, ForCategory: selectedCategory?.categoryKey)
+        }
     }
 
 }
@@ -79,7 +108,7 @@ struct ProductView: View {
                     ForEach(ProductViewModel.FilterOption.allCases, id: \.self) { filterOption in
                         Button(filterOption.rawValue) {
                             Task{
-                               try await viewModel.filterSelected(option: filterOption)
+                               viewModel.filterSelected(option: filterOption)
                             }
                         }
                     }
@@ -91,15 +120,15 @@ struct ProductView: View {
                     ForEach(ProductViewModel.CategoryOption.allCases, id: \.self) { categoryOption in
                         Button(categoryOption.rawValue) {
                             Task{
-                                try await viewModel.CategorySelected(option: categoryOption)
+                                viewModel.categorySelected(option: categoryOption)
                             }
                         }
                     }
                 }// Menu
             }// ToolbarItem
         }
-        .task {
-            try? await viewModel.getAllProducts()
+        .onAppear{
+            viewModel.getProducts()
         }
         
     }
