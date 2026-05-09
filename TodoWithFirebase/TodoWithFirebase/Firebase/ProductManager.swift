@@ -32,6 +32,13 @@ final class ProductManager {
         try await productDocument(productId: productId).getDocument(as: Product.self)
     }
     
+    func getAllProductSortedByPrice(desceding: Bool) async throws -> [Product] {
+        try await productCollection.order(by: "price", descending: desceding).getDocuments2(as: Product.self)
+    }
+    
+    func getAllProductForCategory(category: String) async throws -> [Product] {
+        try await productCollection.whereField("category", isEqualTo: category).getDocuments2(as: Product.self)
+    }
 }
 
 extension Query{
