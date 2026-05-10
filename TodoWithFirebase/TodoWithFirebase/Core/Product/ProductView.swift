@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
+
 internal import Combine
 
 @MainActor
@@ -14,6 +16,7 @@ final class ProductViewModel: ObservableObject {
     
     @Published var selectedFilter: FilterOption? = nil
     @Published var selectedCategory: CategoryOption? = nil
+    private var LastDocument: DocumentSnapshot? = nil
     
 //    func getAllProducts()async throws{
 //        self.products = try await ProductManager.share.getAllProducts()
@@ -88,6 +91,22 @@ final class ProductViewModel: ObservableObject {
             self.products = try await ProductManager.share.getAllProducts(priceDesceding: selectedFilter?.priceDesceding, ForCategory: selectedCategory?.categoryKey)
         }
     }
+    
+    func getProductByRating() {
+        Task{
+//            let newProduct = try await ProductManager
+//                .share
+//                .getAllProductsByRating(count: 3, lastRate: self.products.last?.rating)
+            
+            let (newProduct, lastDocument) = try await ProductManager
+                .share
+                .getAllProductsByRating(count: 3, lastDocument: LastDocument)
+            
+            self.products.append(contentsOf: newProduct)
+            self.LastDocument = lastDocument
+            
+        }
+    }
 
 }
 
@@ -97,6 +116,10 @@ struct ProductView: View {
     
     var body: some View {
         List{
+            Button("Fetch More") {
+                viewModel.getProductByRating()
+            }
+            
             ForEach(viewModel.products) { product in
                 ProductCellView(product: product)
             }
@@ -128,7 +151,7 @@ struct ProductView: View {
             }// ToolbarItem
         }
         .onAppear{
-            viewModel.getProducts()
+//            viewModel.getProducts()
         }
         
     }

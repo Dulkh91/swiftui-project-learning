@@ -20,12 +20,9 @@ final class ProductManager {
         productCollection.document(productId)
     }
     
-//    func uploadProduct(product: Product) async throws{
-//        try productDocument(productId: String(product.id)).setData(from: product, merge: false)
-//    }
-    
    private func getAllProducts() async throws -> [Product] {
-        try await productCollection.getDocuments2(as: Product.self)
+       try await productCollection
+           .getDocuments2(as: Product.self)
     }
     
     func getProduct(productId: String) async throws -> Product {
@@ -64,19 +61,71 @@ final class ProductManager {
         }
         return try await getAllProducts()
     }
-}
+    
+    func getAllProductsByRating(count: Int, lastRate: Double?) async throws -> [Product]{
+        try await productCollection
+            .order(by: Product.CodingKeys.rating.rawValue, descending: true)
+            .limit(to: count)
+            .start(after: [lastRate ?? 99999999])
+            .getDocuments2(as: Product.self)
+    }
+    
+    func getAllProductsByRating(count: Int, lastDocument: DocumentSnapshot?) async throws ->(products: [Product], lastDocument :DocumentSnapshot?){
+        if let lastDocument {
+           return try await productCollection
+                .order(by: Product.CodingKeys.rating.rawValue, descending: true)
+                .limit(to: count)
+                .start(afterDocument: lastDocument)
+                .getDocumentWithSnapshot(as: Product.self)
+        }else{
+          return  try await productCollection
+                .order(by: Product.CodingKeys.rating.rawValue, descending: true)
+                .limit(to: count)
+                .getDocumentWithSnapshot(as: Product.self)
+        }
+    }
+    
+}//- ProductManager
 
 extension Query{
-    func getDocuments2(as type: Product.Type) async throws -> [Product]{
+//    func getDocuments2(as type: Product.Type) async throws -> [Product]{
+//        let snapshot = try await self.getDocuments()
+//        
+//        var products: [Product] = []
+//        
+//        for document in snapshot.documents {
+//            let product = try document.data(as: Product.self)
+//            products.append(product)
+//        }
+//        
+//        return products
+//    }
+  //Both the same
+    /*
+    func getDocuments2<T>(as type: T.Type) async throws -> [T] where T: Decodable{
         let snapshot = try await self.getDocuments()
         
-        var products: [Product] = []
-        
-        for document in snapshot.documents {
-            let product = try document.data(as: Product.self)
-            products.append(product)
+        return try snapshot.documents.map { document in
+            try document.data(as: T.self)
         }
+    }
+    */
+    
+    
+    func getDocuments2<T>(as type: T.Type) async throws -> [T] where T: Decodable{
+         try await getDocumentWithSnapshot(as: type).products
+        //(products, lastDocument)
+//        return products
+    }
+    
+    
+    func getDocumentWithSnapshot<T>(as Type: T.Type) async throws -> (products: [T], lastDocument :DocumentSnapshot?) where T : Decodable {
+        let snapshot = try await self.getDocuments()
         
-        return products
+        let products = try snapshot.documents.map({ document in
+            try document.data(as: T.self)
+        })
+        
+        return (products, snapshot.documents.last)
     }
 }
