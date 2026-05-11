@@ -39,6 +39,8 @@ final class ProductViewModel: ObservableObject {
 
     func filterSelected(option: FilterOption){
         self.selectedFilter = option
+        self.products = []
+        self.LastDocument = nil
         self.getProducts()
         
 //        switch option {
@@ -73,6 +75,8 @@ final class ProductViewModel: ObservableObject {
     
     func categorySelected(option: CategoryOption){
         self.selectedCategory = option
+        self.products = []
+        self.LastDocument = nil
         self.getProducts()
         
 //        switch option {
@@ -88,25 +92,39 @@ final class ProductViewModel: ObservableObject {
     
     func getProducts() {
         Task{
-            self.products = try await ProductManager.share.getAllProducts(priceDesceding: selectedFilter?.priceDesceding, ForCategory: selectedCategory?.categoryKey)
+            let (newProduct, lastDocument) = try await ProductManager
+                .share
+                .getAllProducts(priceDesceding: selectedFilter?.priceDesceding,
+                                ForCategory: selectedCategory?.categoryKey,
+                                count: 10, lastDocument: LastDocument)
+            self.products.append(contentsOf: newProduct)
+            self.LastDocument = lastDocument
         }
     }
     
-    func getProductByRating() {
+    
+    func getAllProductByCount(){
         Task{
-//            let newProduct = try await ProductManager
-//                .share
-//                .getAllProductsByRating(count: 3, lastRate: self.products.last?.rating)
-            
-            let (newProduct, lastDocument) = try await ProductManager
-                .share
-                .getAllProductsByRating(count: 3, lastDocument: LastDocument)
-            
-            self.products.append(contentsOf: newProduct)
-            self.LastDocument = lastDocument
-            
+          let count = try await ProductManager.share.getAllProductsCount()
+            print("Total coutn \(count)")
         }
     }
+    
+//    func getProductByRating() {
+//        Task{
+////            let newProduct = try await ProductManager
+////                .share
+////                .getAllProductsByRating(count: 3, lastRate: self.products.last?.rating)
+//            
+//            let (newProduct, lastDocument) = try await ProductManager
+//                .share
+//                .getAllProductsByRating(count: 3, lastDocument: LastDocument)
+//            
+//            self.products.append(contentsOf: newProduct)
+//            self.LastDocument = lastDocument
+//            
+//        }
+//    }
 
 }
 
@@ -116,13 +134,18 @@ struct ProductView: View {
     
     var body: some View {
         List{
-            Button("Fetch More") {
-                viewModel.getProductByRating()
+            
+            ForEach(viewModel.products, id: \.id) { product in
+                ProductCellView(product: product)
+                
+                    .onAppear {
+                        // Load more when reaching last item
+                        if product.id == viewModel.products.last?.id {
+                            viewModel.getProducts()
+                        }
+                    }
             }
             
-            ForEach(viewModel.products) { product in
-                ProductCellView(product: product)
-            }
         }
         .navigationTitle("Product")
         .toolbar {
@@ -151,7 +174,8 @@ struct ProductView: View {
             }// ToolbarItem
         }
         .onAppear{
-//            viewModel.getProducts()
+            viewModel.getProducts()
+            viewModel.getAllProductByCount()
         }
         
     }
