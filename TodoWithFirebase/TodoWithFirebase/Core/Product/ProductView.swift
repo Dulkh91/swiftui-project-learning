@@ -134,7 +134,6 @@ struct ProductView: View {
     
     var body: some View {
         List{
-            
             ForEach(viewModel.products, id: \.id) { product in
                 ProductCellView(product: product)
                 

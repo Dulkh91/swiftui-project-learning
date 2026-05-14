@@ -14,12 +14,16 @@ struct RootView: View {
     var body: some View {
         ZStack{
             if !showSignInView{
-                NavigationStack{
-                    ProductView()
+                ToobarView(ShowSignInView: $showSignInView)
+                
+                //NavigationStack{
+                    
+//                    ProductView()
 //                    ProfileView(showSignInView: $showSignInView)
                     
 //                    SettingView(showSignInView: $showSignInView)
-                    }
+                   // }
+                
                 }
             }//: ZSTACK
             .onAppear{// បើក app ដំបូង
