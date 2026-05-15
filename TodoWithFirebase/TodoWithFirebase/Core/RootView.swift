@@ -12,18 +12,18 @@ struct RootView: View {
     @State private var showSignInView: Bool = false
     //MARK: - BODY
     var body: some View {
-        ZStack{
-            if !showSignInView{
-                ToobarView(ShowSignInView: $showSignInView)
-                
-                //NavigationStack{
+            ZStack{
+                if !showSignInView{
+                    TabbarView(ShowSignInView: $showSignInView)
                     
-//                    ProductView()
-//                    ProfileView(showSignInView: $showSignInView)
+                    //NavigationStack{
                     
-//                    SettingView(showSignInView: $showSignInView)
-                   // }
-                
+                    //                    ProductView()
+                    //                    ProfileView(showSignInView: $showSignInView)
+                    
+                    //                    SettingView(showSignInView: $showSignInView)
+                    // }
+                    
                 }
             }//: ZSTACK
             .onAppear{// បើក app ដំបូង

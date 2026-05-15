@@ -7,8 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
-
-internal import Combine
+import Combine
 
 @MainActor
 final class ProductViewModel: ObservableObject {
@@ -93,7 +92,7 @@ final class ProductViewModel: ObservableObject {
     func getProducts() {
         Task{
             let (newProduct, lastDocument) = try await ProductManager
-                .share
+                .shared
                 .getAllProducts(priceDesceding: selectedFilter?.priceDesceding,
                                 ForCategory: selectedCategory?.categoryKey,
                                 count: 10, lastDocument: LastDocument)
@@ -105,8 +104,7 @@ final class ProductViewModel: ObservableObject {
     
     func getAllProductByCount(){
         Task{
-          let count = try await ProductManager.share.getAllProductsCount()
-            print("Total coutn \(count)")
+           try await ProductManager.shared.getAllProductsCount()
         }
     }
     
@@ -125,6 +123,18 @@ final class ProductViewModel: ObservableObject {
 //            
 //        }
 //    }
+    
+    
+    func getFavoriteProduct(productId: Int){
+        Task{
+            let authResutl = try AuthenticationManager.shared.getAuthenticateUser()
+            
+            try await UserManager
+                .shared
+                .addUserFavoriteProduct(userId: authResutl.uid , productId: productId)
+        }
+        
+    }
 
 }
 
@@ -137,16 +147,29 @@ struct ProductView: View {
             ForEach(viewModel.products, id: \.id) { product in
                 ProductCellView(product: product)
                 
+                    .contextMenu(menuItems: {
+                        Button("Add to favorite") {
+                            viewModel.getFavoriteProduct(productId: product.id)
+                        }
+                    })
+                
                     .onAppear {
                         // Load more when reaching last item
                         if product.id == viewModel.products.last?.id {
                             viewModel.getProducts()
                         }
                     }
-            }
+            }// - forEach
             
-        }
+            
+        }// - List
         .navigationTitle("Product")
+        
+        .onAppear{
+            viewModel.getProducts()
+            viewModel.getAllProductByCount()
+        }
+        
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Menu("Filter: \(viewModel.selectedFilter?.rawValue ?? "None")") {
@@ -172,15 +195,14 @@ struct ProductView: View {
                 }// Menu
             }// ToolbarItem
         }
-        .onAppear{
-            viewModel.getProducts()
-            viewModel.getAllProductByCount()
-        }
+        
         
     }
 }
 
 #Preview {
-    ProductView()
+    NavigationStack{
+        ProductView()
+    }
 }
 

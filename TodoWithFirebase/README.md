@@ -530,3 +530,98 @@ final class ProductViewModel: ObservableObject {
 
 </details>
 
+## Favorite page
+<details><summary>Show code</summary>
+
+```swift
+import SwiftUI
+import Combine
+
+final class FavouriteViewModel: ObservableObject{
+    @Published private(set) var products: [(userFavouriteProduct: UserFavouriteProduct, product: Product)] = []
+    @Published var isLoading = false
+    
+    func getFavorites(){
+        guard !isLoading else{ return}
+        isLoading = true
+           
+        Task{
+            let authResult = try AuthenticationManager.shared.getAuthenticateUser()
+            
+            let userFavoriteProducts = try await UserManager
+                .shared.getUserAllFavoriteProduct(userId: authResult.uid.self)
+            
+            var localArray: [(userFavouriteProduct: UserFavouriteProduct, product: Product)] = []
+            
+            for userFavoriteProduct in userFavoriteProducts {
+                
+                if let product = try? await ProductManager.shared.getProduct(productId: String(userFavoriteProduct.productId)){
+                   localArray.append((userFavoriteProduct, product))
+                    
+                    isLoading = false
+               }
+            }
+            self.products = localArray
+        }
+        
+    }
+    
+    func removeFavoriteProduct(favoriteId: String){
+        guard !isLoading else {return}
+        isLoading = true
+        Task{
+            let authResult = try AuthenticationManager.shared.getAuthenticateUser()
+            try await UserManager.shared.removeUserFavoriteProduct(userId: authResult.uid, favoriteId: favoriteId)
+            
+            getFavorites()
+            isLoading = false
+        }
+    }
+    
+}
+
+struct FavoriteView: View {
+    //MARK: - Property
+    @StateObject private var viewModel = FavouriteViewModel()
+    
+    //MARK: - Body
+    var body: some View {
+        
+        List{
+            ForEach(viewModel.products, id: \.userFavouriteProduct.id.self) { item in
+                ProductCellView(product: item.product)
+                    .contextMenu {
+                        Button("Remove from favorite"){
+                            viewModel.removeFavoriteProduct(favoriteId: String(item.userFavouriteProduct.id))
+                        }
+                    }
+                
+                    
+            }// - forEach
+
+        }// - List
+        .navigationTitle("Favorites")
+        .onAppear{
+            viewModel.getFavorites()
+        }
+        
+        if viewModel.isLoading{
+            HStack{
+                Spacer()
+                ProgressView()
+                Spacer()
+            }
+            .padding()
+        }
+    }
+}
+
+```
+</details>
+
+# screenshots
+
+<div style="display: flex; gap: 10px">
+    <img src="./Screenshots/h.jpg" alt="homepage" width="40%">
+    <img src="./Screenshots/f.jpg" alt="favorite" width="40%">
+</div>

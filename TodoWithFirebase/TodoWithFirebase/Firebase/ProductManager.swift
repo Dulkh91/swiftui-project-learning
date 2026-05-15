@@ -10,8 +10,9 @@ import FirebaseFirestore
 import Firebase
 
 
+
 final class ProductManager {
-    static let share = ProductManager()
+    static let shared = ProductManager()
     private init(){}
     
     private let productCollection = Firestore.firestore().collection("products")
@@ -20,9 +21,7 @@ final class ProductManager {
         productCollection.document(productId)
     }
     
-    func getProduct(productId: String) async throws -> Product {
-        try await productDocument(productId: productId).getDocument(as: Product.self)
-    }
+
     
 //   private func getAllProducts() async throws -> [Product] {
 //       try await productCollection
@@ -75,6 +74,11 @@ final class ProductManager {
             .order(by: priceKey, descending: desceding)
      }
     
+    
+    func getProduct(productId: String) async throws -> Product {
+       try await productDocument(productId: productId).getDocument2(as: Product.self)
+          
+    }
     
     
     func getAllProducts(priceDesceding desceding: Bool?,
@@ -193,6 +197,13 @@ extension Query{
     func getAggregation()async throws ->Int{
         let snapshot = try await self.count.getAggregation(source: .server)
         return Int(truncating: snapshot.count)
+    }
+}
+
+extension DocumentReference {
+    func getDocument2<T>(as type: T.Type) async throws -> T where T: Decodable {
+        let snapshot = try await self.getDocument()
+        return try snapshot.data(as: T.self)
     }
 }
 

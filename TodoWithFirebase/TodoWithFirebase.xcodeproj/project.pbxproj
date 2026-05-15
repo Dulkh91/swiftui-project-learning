@@ -52,6 +52,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		AD0AE4F12FB769D50062573E /* Screenshots */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		ADA3CE1B2F5AD86800A742E4 /* TodoWithFirebase */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -107,6 +112,7 @@
 		ADA3CE102F5AD86800A742E4 = {
 			isa = PBXGroup;
 			children = (
+				AD0AE4F12FB769D50062573E /* Screenshots */,
 				ADA3CE1B2F5AD86800A742E4 /* TodoWithFirebase */,
 				ADA3CE522F5AEAC700A742E4 /* README.md */,
 				ADA3CE292F5AD86900A742E4 /* TodoWithFirebaseTests */,
@@ -141,6 +147,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				AD0AE4F12FB769D50062573E /* Screenshots */,
 				ADA3CE1B2F5AD86800A742E4 /* TodoWithFirebase */,
 			);
 			name = TodoWithFirebase;
