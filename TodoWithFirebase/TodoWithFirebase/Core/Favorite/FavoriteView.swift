@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 final class FavouriteViewModel: ObservableObject{
-    @Published private(set) var userFavouriteProducts: [UserFavouriteProduct] = []
+    @Published private(set) var userFavouriteProducts: [UserFavoriteProduct] = []
     @Published var isLoading = false
     
     func getFavorites(){

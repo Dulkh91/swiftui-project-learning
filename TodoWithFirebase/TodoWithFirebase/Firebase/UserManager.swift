@@ -84,7 +84,7 @@ final class UserManager{
         
     }
     
-    func addUserFavoriteProduct(userId: String, favoriteId: String) async throws{
+    func removeUserFavoriteProduct(userId: String, favoriteId: String) async throws{
         try await userDocument(userId: userId)
             .collection("favorite_product")
             .document(favoriteId)
@@ -98,9 +98,9 @@ final class UserManager{
         let documentId = document.documentID
         
         let data:[String:Any] = [
-            UserFavouriteProduct.CodingKeys.id.rawValue : documentId,
-            UserFavouriteProduct.CodingKeys.productId.rawValue : productId,
-            UserFavouriteProduct.CodingKeys.createdAt.rawValue : Timestamp()
+            UserFavoriteProduct.CodingKeys.id.rawValue : documentId,
+            UserFavoriteProduct.CodingKeys.productId.rawValue : productId,
+            UserFavoriteProduct.CodingKeys.createdAt.rawValue : Timestamp()
         ]
         
         try await document.setData(data, merge: false)
@@ -112,17 +112,20 @@ final class UserManager{
     }
     
     
-    func getUserAllFavoriteProduct(userId: String) async throws -> [UserFavouriteProduct] {
+    func getUserAllFavoriteProduct(userId: String) async throws -> [UserFavoriteProduct] {
         
         let result = userFavoriteProductCollection(userId: userId)
-        let data = try await result.getDocuments2(as: UserFavouriteProduct.self)
+        let data = try await result.getDocuments2(as: UserFavoriteProduct.self)
         return  data
         
     }
     
 }
 
-struct UserFavouriteProduct: Codable{
+
+
+
+struct UserFavoriteProduct: Codable{
     let id: String
     let productId: Int
     let createdAt: Date
