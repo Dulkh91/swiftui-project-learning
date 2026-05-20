@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  blogView
+//
+//  Created by Ros Dul on 20/5/26.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+
+API_TOKEN = eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjYxLCJleHAiOjE3Nzk0MTM5Mjd9.Kui0lJJniICwJDq32ZG0mNp71QUPH3MV2SacNPTF7OQ
