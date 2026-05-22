@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ImageProfileView: View {
     let author: Author
+    
     var body: some View {
         
         if let imageUrl = author.image,
@@ -19,21 +20,30 @@ struct ImageProfileView: View {
                      .frame(width: 60, height: 60)
                      .clipShape(Circle())
             } placeholder: {
-                Image(systemName: "person.slash.fill")
-                    .resizable()
-                    .scaledToFit()
+                let name = nameSort(name: author.username)
+                    Text(name)
                     .frame(width: 60, height: 60)
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [.yellow, .orange]), startPoint: .top, endPoint: .bottom)
+                    )
                     .clipShape(Circle())
-                    .foregroundColor(.gray)
+                    .foregroundColor(.white)
             }
         } else {
-            Image(systemName: "person.slash.fill")
-                .resizable()
-                .scaledToFit()
+            let name = nameSort(name: author.username)
+                Text(name)
                 .frame(width: 60, height: 60)
+                .background(
+                    LinearGradient(gradient: Gradient(colors: [.yellow, .orange]), startPoint: .top, endPoint: .bottom)
+                )
                 .clipShape(Circle())
-                .foregroundColor(.gray)
+                .foregroundColor(.white)
         }
+    }
+    
+    func nameSort(name: String) ->String{
+        let title = name.prefix(1)
+        return title.capitalized
     }
 }
 

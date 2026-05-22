@@ -12,7 +12,7 @@ import Combine
 final class BlogViewModel: ObservableObject{
     @Published var blogViewArticle: [BlogViewsModel] = []
     
-    func getArtiles() async{
+    func getArticles() async {
         do{
             let articlesResponse = try await Services.shared.getBlogViews()
             self.blogViewArticle = articlesResponse
@@ -26,38 +26,42 @@ final class BlogViewModel: ObservableObject{
 struct BlogViewList: View {
     //MARK: - PROPERTY
     @StateObject private var vm = BlogViewModel()
+    @State private var cancellables = Set<AnyCancellable>()
+//    @State private var pollingTask: Task<Void,Never>?
     
     //MARK: - BODY
     var body: some View {
         NavigationStack{
             List (vm.blogViewArticle, id: \.slug){ article in
                 
-                HStack(alignment: .top){
-                        ImageProfileView(author: article.author)
-                        
-                        VStack(alignment: .leading, spacing: 0){
-                            Text(article.title)
-                                .font(.headline)
-                                .foregroundColor(.accentColor)
-                            
-                            // date view
-                            DateView(createdAt: article.createdAt)
-                            
-                            Text(article.description)
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
-                        }// - vstack
-                        
-                    }// - hstack
+                NavigationLink {
+                    DetailListView(articleDetail: article)
+                } label: {
+                    ArticleRowView(article: article)
+                }
+
+                
+                    
             }// - List
             .navigationTitle("Blog view list")
             .task {
-                await vm.getArtiles()
+                await vm.getArticles()
+
+                // Poll every 30 seconds without making the task closure throwing
+                let ticker = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
+                for await _ in ticker.values {
+                    await vm.getArticles()
+                }
             }
-        }
-    }
+            
+        }// - Navigation
+    
+    }// - Body
+    
 }
+
 
 #Preview {
     BlogViewList()
 }
+
