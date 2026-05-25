@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ImageProfileView: View {
     let author: Author
+    var size: CGFloat = 60
     
     var body: some View {
         
@@ -17,28 +18,29 @@ struct ImageProfileView: View {
             AsyncImage(url: url) { image in
                 image.resizable()
                      .scaledToFill()
-                     .frame(width: 60, height: 60)
+                     .frame(width: size, height: size)
                      .clipShape(Circle())
             } placeholder: {
-                let name = nameSort(name: author.username)
-                    Text(name)
-                    .frame(width: 60, height: 60)
-                    .background(
-                        LinearGradient(gradient: Gradient(colors: [.yellow, .orange]), startPoint: .top, endPoint: .bottom)
-                    )
-                    .clipShape(Circle())
-                    .foregroundColor(.white)
+                placeholderView
             }
         } else {
-            let name = nameSort(name: author.username)
-                Text(name)
-                .frame(width: 60, height: 60)
-                .background(
-                    LinearGradient(gradient: Gradient(colors: [.yellow, .orange]), startPoint: .top, endPoint: .bottom)
-                )
-                .clipShape(Circle())
-                .foregroundColor(.white)
+            placeholderView
         }
+    }
+    
+    
+    private var placeholderView: some View{
+        let name = nameSort(name: author.username)
+        
+        return Text(name)
+            .font(.system(size: size * 0.4))
+            .frame(width: size, height: size)
+            .background(
+                LinearGradient(gradient: Gradient(colors: [.yellow, .orange]), startPoint: .top, endPoint: .bottom)
+            )
+            .clipShape(Circle())
+            .foregroundColor(.white)
+        
     }
     
     func nameSort(name: String) ->String{
@@ -46,6 +48,8 @@ struct ImageProfileView: View {
         return title.capitalized
     }
 }
+
+
 
 #Preview {
     let sampleArticle = BlogViewsModel(
