@@ -10,55 +10,76 @@ import SwiftUI
 struct ContentView: View {
     private let imageHeight: CGFloat = 360
     
+    // សម្គាល់ស្ថានភាពរាង (false = បួនជ្រុង, true = រង្វង់)
+    @State private var isCircleShape: Bool = false
+    
     var body: some View {
         ZStack {
-            ScrollView(.vertical){
-                VStack(spacing: 0){
+            // ពណ៌ផ្ទៃខាងក្រោយសន្លឹកអូស
+            Color(.systemGroupedBackground)
+                .edgesIgnoringSafeArea(.all)
+            
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 0) {
+                    
+                    // ផ្នែក Header រូបភាព
                     GeometryReader { geo in
+                        // ទាញយកទីតាំងអូសធៀបនឹងអេក្រង់ទូរស័ព្ទ (.global)
                         let minY = geo.frame(in: .global).minY
-                        let offsetY = minY > 0 ? -minY : 0
-                        // តំលៃ zoom
-                        
-                        let zoomScale = minY < 0 ? 1 + (-minY / imageHeight) : 1
-                        
-//                       let _ = print("zoomScal\(zoomScale)")
-                        
-//                        let _ = print("minY: \(minY)")
-                        // ប្តូររូបរាងពេល zoom
-                        let shouldBecircle = zoomScale > 1.0
-                        let currentShape: AnyShape = shouldBecircle ? .init(.circle) : .init(.rect)
-                        
-                        
-                        // រកចំណុចកណ្តាល
                         let screenWidth = geo.size.width
                         
-                        ImageView(
-//                            size:  imageHeight / zoomScale,
-                            size:  zoomScale > 1.0 ? 100 :  imageHeight,
-                            imageShap: currentShape
-                            
-                        )
-                    
-                        // ធ្វើឱ្យរូបភាពរលាស់ទៅតាមការអូស (Parallax Zoom)
-                            .offset(y: offsetY)
-                            .frame(
-                                width: screenWidth,
-                                height: imageHeight + (minY > 0 ? minY : 0)
-                            
-                            )
+                        // កំណត់ទំហំរូបភាព៖ បើជារង្វង់ឱ្យតូច (100) បើបួនជ្រុងឱ្យរីកធំតាមការអូស
+                        let currentSize = isCircleShape ? 100 : (imageHeight + (minY > 0 ? minY : 0))
                         
-                            .clipped()
-                            .animation(.easeOut(duration: 0.3), value: shouldBecircle)
-                    }// - geo
+                        // ហៅ ImageView មកប្រើ
+                        ImageView(
+                            size: currentSize,
+                            imageShap: isCircleShape ? AnyShape(.circle) : AnyShape(.rect)
+                        )
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        // Effect Parallax: រក្សារូបភាពកុំឱ្យហើរបាត់ពេលអូសចុះក្រោម
+                        .offset(y: (minY > 0 && !isCircleShape) ? -minY : 0)
+                        .frame(width: screenWidth, height: imageHeight + (minY > 0 ? minY : 0))
+                        .clipped()
+                        
+                        // កន្លែងឆែកលក្ខខណ្ឌ៖ ប្រើ .onChange ជាប់នឹង View នេះតែម្តង ដើម្បីកុំឱ្យគាំង
+                        .onChange(of: minY) { _, newValue in
+                            if newValue < -5 {
+                                // បើអូសឡើងលើហួស -20 ឱ្យទៅជារង្វង់
+                                if !isCircleShape {
+                                    withAnimation(.spring(response: 0.35, dampingFraction: 0.7)) {
+                                        isCircleShape = true
+                                    }
+                                }
+                            } else if newValue > 10 {
+                                // ទាល់តែទាញចុះក្រោមមកវិញខ្លាំង (លើសពី 40) ទើបទៅជាបួនជ្រុងវិញ
+                                if isCircleShape {
+                                    withAnimation(.spring(response: 0.35, dampingFraction: 0.7)) {
+                                        isCircleShape = false
+                                    }
+                                }
+                            }
+                        }
+                    }
                     .frame(height: imageHeight)
                     .zIndex(1)
-                }// - vstack
-                .padding()
-            }// - scroll
-            
+                    
+                    // ផ្នែកទិន្នន័យខាងក្រោម (សម្រាប់ឱ្យមានកន្លែងអូស Scroll)
+                    VStack(spacing: 15) {
+                        ForEach(1...10, id: \.self) { index in
+                            Text("អត្ថបទ ឬព័ត៌មានទី \(index)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding()
+                                .background(Color(.systemBackground))
+                                .cornerRadius(10)
+                        }
+                    }
+                    .padding()
+                    .zIndex(0)
+                }
+            }
         }
-//        .coordinateSpace(name: "scroll")// if want to use padding at this shound use this
-//        .padding()
+        .edgesIgnoringSafeArea(.top)
     }
 }
 
