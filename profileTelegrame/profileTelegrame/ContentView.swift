@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    private let imageHeight: CGFloat = 360
+    private let imageHeight: CGFloat = 400
     
     // សម្គាល់ស្ថានភាពរាង (false = បួនជ្រុង, true = រង្វង់)
     @State private var isCircleShape: Bool = false
@@ -16,8 +16,8 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             // ពណ៌ផ្ទៃខាងក្រោយសន្លឹកអូស
-            Color(.systemGroupedBackground)
-                .edgesIgnoringSafeArea(.all)
+//            Color(.systemGroupedBackground)
+//                .edgesIgnoringSafeArea(.all)
             
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0) {
@@ -29,29 +29,30 @@ struct ContentView: View {
                         let screenWidth = geo.size.width
                         
                         // កំណត់ទំហំរូបភាព៖ បើជារង្វង់ឱ្យតូច (100) បើបួនជ្រុងឱ្យរីកធំតាមការអូស
-                        let currentSize = isCircleShape ? 100 : (imageHeight + (minY > 0 ? minY : 0))
+                        let currentSize = isCircleShape ? 200 : (imageHeight + (minY > 0 ? minY : 0))
                         
                         // ហៅ ImageView មកប្រើ
                         ImageView(
                             size: currentSize,
                             imageShap: isCircleShape ? AnyShape(.circle) : AnyShape(.rect)
                         )
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                         // Effect Parallax: រក្សារូបភាពកុំឱ្យហើរបាត់ពេលអូសចុះក្រោម
                         .offset(y: (minY > 0 && !isCircleShape) ? -minY : 0)
                         .frame(width: screenWidth, height: imageHeight + (minY > 0 ? minY : 0))
                         .clipped()
+//                        .clipShape(Rectangle())
                         
                         // កន្លែងឆែកលក្ខខណ្ឌ៖ ប្រើ .onChange ជាប់នឹង View នេះតែម្តង ដើម្បីកុំឱ្យគាំង
                         .onChange(of: minY) { _, newValue in
-                            if newValue < -5 {
+                            if newValue < -20 {
                                 // បើអូសឡើងលើហួស -20 ឱ្យទៅជារង្វង់
                                 if !isCircleShape {
                                     withAnimation(.spring(response: 0.35, dampingFraction: 0.7)) {
                                         isCircleShape = true
                                     }
                                 }
-                            } else if newValue > 10 {
+                            } else if newValue > 40 {
                                 // ទាល់តែទាញចុះក្រោមមកវិញខ្លាំង (លើសពី 40) ទើបទៅជាបួនជ្រុងវិញ
                                 if isCircleShape {
                                     withAnimation(.spring(response: 0.35, dampingFraction: 0.7)) {
@@ -59,10 +60,15 @@ struct ContentView: View {
                                     }
                                 }
                             }
-                        }
+                        }// - onChange
+                        
                     }
                     .frame(height: imageHeight)
+                    .frame(maxWidth: .infinity)
                     .zIndex(1)
+                    
+                    // អក្សរនៅលើរូបភាព
+                    TextNameView(isCircleShape: isCircleShape)
                     
                     // ផ្នែកទិន្នន័យខាងក្រោម (សម្រាប់ឱ្យមានកន្លែងអូស Scroll)
                     VStack(spacing: 15) {
@@ -78,7 +84,9 @@ struct ContentView: View {
                     .zIndex(0)
                 }
             }
-        }
+            .safeAreaPadding(.horizontal, 0)
+            .edgesIgnoringSafeArea(.horizontal)
+        }// - Zstack
         .edgesIgnoringSafeArea(.top)
     }
 }

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ImageView: View {
     //MARK: - PROPERTY
-    var size: CGFloat = 100
-    var imageShap: AnyShape = .init(.circle)
+    var size: CGFloat = 400
+    var imageShap: AnyShape = .init(.rect)
     
     //MARK: - BODY
     var body: some View {
